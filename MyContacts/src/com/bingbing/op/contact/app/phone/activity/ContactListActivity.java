@@ -1,4 +1,10 @@
-package com.yarin.android.MyContacts;
+package com.bingbing.op.contact.app.phone.activity;
+
+import com.bingbing.op.contact.R;
+import com.bingbing.op.contact.R.drawable;
+import com.bingbing.op.contact.R.string;
+import com.bingbing.op.contact.common.db.ContactColumn;
+import com.bingbing.op.contact.common.db.ContactsProvider;
 
 import android.app.ListActivity;
 import android.content.ComponentName;
@@ -16,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class MyContacts extends ListActivity
+public class ContactListActivity extends ListActivity
 {
 	private static final String TAG = "MyContacts";
 	
@@ -40,7 +46,7 @@ public class MyContacts extends ListActivity
 
         Cursor cursor = managedQuery(getIntent().getData(), ContactColumn.PROJECTION, null, null,null);
 
-        //×¢²áÃ¿¸öÁÐ±í±íÊ¾ÐÎÊ½ £ºÐÕÃû + ÒÆ¶¯µç»°
+        //×¢ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ê¾ï¿½ï¿½Ê½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ + ï¿½Æ¶ï¿½ï¿½ç»°
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 			android.R.layout.simple_list_item_2,
 			cursor,
@@ -53,7 +59,7 @@ public class MyContacts extends ListActivity
     public boolean onCreateOptionsMenu(Menu menu) 
     {
         super.onCreateOptionsMenu(menu);
-        //Ìí¼ÓÁªÏµÈË
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
         menu.add(0, AddContact_ID, 0, R.string.add_user)
         	.setShortcut('3', 'a')
         	.setIcon(R.drawable.add);
@@ -61,9 +67,9 @@ public class MyContacts extends ListActivity
         Intent intent = new Intent(null, getIntent().getData());
         intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
         menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
-                new ComponentName(this, MyContacts.class), null, intent, 0, null);
+                new ComponentName(this, ContactListActivity.class), null, intent, 0, null);
 
-        //ÍË³ö³ÌÐò
+        //ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½
         menu.add(0, EXITContact_ID, 0, R.string.exit)
     		.setShortcut('4', 'd')
     		.setIcon(R.drawable.exit);
@@ -71,17 +77,17 @@ public class MyContacts extends ListActivity
         
     }
     
-    //´¦Àí²Ëµ¥²Ù×÷
+    //ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
     public boolean onOptionsItemSelected(MenuItem item) 
     {
         switch (item.getItemId()) 
         {
         case AddContact_ID:
-            //Ìí¼ÓÁªÏµÈË
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
             startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
             return true;
         case EXITContact_ID:
-        	//ÍË³ö³ÌÐò
+        	//ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½
         	this.finish();
             return true;
         }
@@ -103,20 +109,20 @@ public class MyContacts extends ListActivity
 			specifics[1] = new Intent(Intent.ACTION_VIEW, uri);
 			MenuItem[] items = new MenuItem[2];
 				
-			//Ìí¼ÓÂú×ãÌõ¼þµÄ²Ëµ¥
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²Ëµï¿½
 			Intent intent = new Intent(null, uri);
 			intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
-			menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0, null, specifics, intent, 0, items);
+			// menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0, null, specifics, intent, 0, items);
 
 			if (items[0] != null)
 			{
-				//±à¼­ÁªÏµÈË
-				items[0].setShortcut('1', 'e').setIcon(R.drawable.edituser).setTitle(R.string.editor_user);   
+				//ï¿½à¼­ï¿½ï¿½Ïµï¿½ï¿½
+				// items[0].setShortcut('1', 'e').setIcon(R.drawable.edituser).setTitle(R.string.editor_user);   
 			}
 			if (items[1] != null)
 			{
-				//²é¿´ÁªÏµÈË
-				items[1].setShortcut('2', 'f').setTitle(R.string.view_user).setIcon(R.drawable.viewuser);   
+				//ï¿½é¿´ï¿½ï¿½Ïµï¿½ï¿½
+				// items[1].setShortcut('2', 'f').setTitle(R.string.view_user).setIcon(R.drawable.viewuser);   
 			}
 		}
 		else
@@ -125,8 +131,8 @@ public class MyContacts extends ListActivity
 		}
 		return true;
 	}
-    //¶¯Ì¬²Ëµ¥´¦Àí
-    //µã»÷µÄÄ¬ÈÏ²Ù×÷Ò²¿ÉÒÔÔÚÕâÀï´¦Àí
+    //ï¿½ï¿½Ì¬ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï²ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï´¦ï¿½ï¿½
     protected void onListItemClick(ListView l, View v, int position, long id)   
     {   
         Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);   
@@ -134,17 +140,17 @@ public class MyContacts extends ListActivity
         String action = getIntent().getAction();   
         if ( Intent.ACTION_EDIT.equals(action) )
 		{
-        	//±à¼­ÁªÏµÈË
+        	//ï¿½à¼­ï¿½ï¿½Ïµï¿½ï¿½
         	startActivity(new Intent(Intent.ACTION_EDIT, uri));  
 		}  
         else
         {     
-        	//²é¿´ÁªÏµÈË
+        	//ï¿½é¿´ï¿½ï¿½Ïµï¿½ï¿½
         	startActivity(new Intent(Intent.ACTION_VIEW, uri));       
         }  
     }   
     
-    //³¤°´´¥·¢µÄ²Ëµ¥
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²Ëµï¿½
 	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo)
 	{
 		AdapterView.AdapterContextMenuInfo info;
@@ -156,7 +162,7 @@ public class MyContacts extends ListActivity
 		{
 			return;
 		}
-		//µÃµ½³¤°´µÄÊý¾ÝÏî
+		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Cursor cursor = (Cursor) getListAdapter().getItem(info.position);
 		if (cursor == null)
 		{
@@ -164,7 +170,7 @@ public class MyContacts extends ListActivity
 		}
 
 		menu.setHeaderTitle(cursor.getString(1));
-		//Ìí¼ÓÉ¾³ý²Ëµ¥
+		//ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ëµï¿½
 		menu.add(0, DELEContact_ID, 0, R.string.delete_user);
 	}
     
@@ -185,7 +191,7 @@ public class MyContacts extends ListActivity
 		{
 			case DELEContact_ID:
 			{
-				//É¾³ýÒ»Ìõ¼ÇÂ¼
+				//É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 				Uri noteUri = ContentUris.withAppendedId(getIntent().getData(), info.id);
 				getContentResolver().delete(noteUri, null, null);
 				return true;

@@ -1,4 +1,5 @@
-package com.yarin.android.MyContacts;
+package com.bingbing.op.contact.common.db;
+
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,10 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper
 {
-	public static final String DATABASE_NAME = "mycontacts.db";//Êý¾Ý¿âÃû
-	public static final int DATABASE_VERSION = 2;				 //°æ±¾
-	public static final String CONTACTS_TABLE = "contacts";	 //±íÃû
-	//´´½¨±í
+	public static final String DATABASE_NAME = "mycontacts.db";//ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+	public static final int DATABASE_VERSION = 2;				 //ï¿½æ±¾
+	public static final String CONTACTS_TABLE = "contacts";	 //ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static final String DATABASE_CREATE = 
 		"CREATE TABLE " + CONTACTS_TABLE +" ("					
 		+ ContactColumn._ID+" integer primary key autoincrement,"

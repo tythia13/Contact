@@ -1,4 +1,11 @@
-package com.yarin.android.MyContacts;
+package com.bingbing.op.contact.app.phone.activity;
+
+import com.bingbing.op.contact.R;
+import com.bingbing.op.contact.R.drawable;
+import com.bingbing.op.contact.R.id;
+import com.bingbing.op.contact.R.layout;
+import com.bingbing.op.contact.R.string;
+import com.bingbing.op.contact.common.db.ContactColumn;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class ContactView extends Activity
+public class ContactDetailActivity extends Activity
 {
 	private TextView mTextViewName;
 	private TextView mTextViewMobile;
@@ -42,7 +49,7 @@ public class ContactView extends Activity
 		mTextViewEmail = (TextView) findViewById(R.id.TextView_Email);
 		mTextViewBlog = (TextView) findViewById(R.id.TextView_Blog);
 		
-	    // »ñµÃ²¢±£´æÔ­Ê¼ÁªÏµÈËÐÅÏ¢
+	    // ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ï¢
         mCursor = managedQuery(mUri, ContactColumn.PROJECTION, null, null, null);
         mCursor.moveToFirst();
 	}
@@ -52,7 +59,7 @@ public class ContactView extends Activity
 		super.onResume();
 		if (mCursor != null)
 		{
-			// ¶ÁÈ¡²¢ÏÔÊ¾ÁªÏµÈËÐÅÏ¢
+			// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ï¢
 			mCursor.moveToFirst();
 			
 			mTextViewName.setText(mCursor.getString(ContactColumn.NAME_COLUMN));
@@ -64,14 +71,14 @@ public class ContactView extends Activity
 		}
 		else
 		{
-			setTitle("´íÎóÐÅÏ¢");
+			setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢");
 		}
 	}
     
     public boolean onCreateOptionsMenu(Menu menu)
 	{
 		super.onCreateOptionsMenu(menu);
-		//Ìí¼Ó²Ëµ¥
+		//ï¿½ï¿½Ó²Ëµï¿½
 		menu.add(0, REVERT_ID, 0, R.string.revert).setShortcut('0', 'r').setIcon(R.drawable.listuser);
 		menu.add(0, DELETE_ID, 0, R.string.delete_user).setShortcut('0', 'd').setIcon(R.drawable.remove);
 		menu.add(0, EDITOR_ID, 0, R.string.editor_user).setShortcut('0', 'd').setIcon(R.drawable.edituser);
@@ -86,27 +93,27 @@ public class ContactView extends Activity
 	{
 		switch (item.getItemId())
 		{
-			//É¾³ý
+			//É¾ï¿½ï¿½
 			case DELETE_ID:
 				deleteContact();
 				finish();
 				break;
-			//·µ»ØÁÐ±í
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 			case REVERT_ID:
 				setResult(RESULT_CANCELED);
 				finish();
 				break;
 			case EDITOR_ID:
-			//±à¼­ÁªÏµÈË
+			//ï¿½à¼­ï¿½ï¿½Ïµï¿½ï¿½
 				startActivity(new Intent(Intent.ACTION_EDIT, mUri)); 
 				break;
 			case CALL_ID:
-			//ºô½ÐÁªÏµÈË
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
 		        Intent call = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+mTextViewMobile.getText()));
 		        startActivity(call);
 				break;
 			case SENDSMS_ID:
-			//·¢¶ÌÐÅ¸øÁªÏµÈË
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ïµï¿½ï¿½
 		        Intent sms = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:"+mTextViewMobile.getText()));
 		        startActivity(sms);
 				break;
@@ -115,7 +122,7 @@ public class ContactView extends Activity
 	}
 
 
-	// É¾³ýÁªÏµÈËÐÅÏ¢
+	// É¾ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ï¢
 	private void deleteContact()
 	{
 		if (mCursor != null)
