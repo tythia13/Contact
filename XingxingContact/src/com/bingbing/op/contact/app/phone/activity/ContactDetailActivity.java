@@ -40,7 +40,7 @@ public class ContactDetailActivity extends Activity
 		
 		mUri = getIntent().getData();
 		
-		this.setContentView(R.layout.viewuser);
+		this.setContentView(R.layout.activity_contact_detail);
 		
 		mTextViewName = (TextView) findViewById(R.id.TextView_Name);
 		mTextViewMobile = (TextView) findViewById(R.id.TextView_Mobile);

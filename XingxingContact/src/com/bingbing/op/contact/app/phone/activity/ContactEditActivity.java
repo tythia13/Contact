@@ -77,7 +77,7 @@ public class ContactEditActivity extends BaseActivity
             return;
         }
 
-        setContentView(R.layout.editorcontacts);
+        setContentView(R.layout.activity_contact_edit);
 
         nameText = (EditText)findViewById(R.id.EditText01);
         mobileText = (EditText)findViewById(R.id.EditText02);

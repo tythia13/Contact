@@ -1,9 +1,9 @@
 package com.bingbing.op.contact.common.activity;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-public class BaseActivity extends Activity
+public class BaseActivity extends FragmentActivity
 {
     protected void showToast(String str)
     {

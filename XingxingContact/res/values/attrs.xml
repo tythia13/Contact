@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CommonPullRefreshListView"> 
+        <attr name="isNeedFooter" format="boolean" /> 
+    </declare-styleable> 
+
+    <declare-styleable name="CommonPullRefreshListView"> 
+        <attr name="isNeedFooterDivide" format="boolean" /> 
+    </declare-styleable> 
+
+    <declare-styleable name="CommonPullRefreshView"> 
+        <attr name="isAllowRefresh" format="boolean" /> 
+    </declare-styleable> 
+    
+     <declare-styleable name="CommonTwoTabView"> 
+        <attr name="isDefaultCheckLeft" format="boolean" /> 
+    </declare-styleable> 
+    
+     <declare-styleable name="CommonHeadImageView"> 
+        <attr name="headSrc" format="reference" /> 
+    </declare-styleable> 
+    
+     <declare-styleable name="CommonHeadImageView"> 
+        <attr name="coverSrc" format="reference" /> 
+    </declare-styleable> 
+
+</resources>
