@@ -1,19 +1,32 @@
 package com.bingbing.op.contact.app.phone.fragment;
 
-import com.bingbing.op.contact.common.fragment.BaseFragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class FragmentContactGroup extends BaseFragment
+import com.bingbing.op.contact.R;
+
+public class FragmentContactGroup extends BaseFragmentContact
 {
 
-    private static FragmentContactGroup mInstance;
-
-    public static FragmentContactGroup getInstance()
+    public static FragmentContactGroup newInstance()
     {
-        if (mInstance == null)
-        {
-            mInstance = new FragmentContactGroup();
-        }
+        FragmentContactGroup mInstance = new FragmentContactGroup();
         return mInstance;
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View v = inflater.inflate(R.layout.fragment_contact_group, container, false);
+        initView(v);
+        return v;
+    }
+
+    private void initView(View v)
+    {
+
+    }
 }

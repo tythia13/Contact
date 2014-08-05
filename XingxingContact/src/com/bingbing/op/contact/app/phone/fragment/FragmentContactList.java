@@ -15,21 +15,16 @@ import com.bingbing.op.contact.app.phone.adapter.ContactListAdapter;
 import com.bingbing.op.contact.app.phone.model.ContactItem;
 import com.bingbing.op.contact.common.db.ContactColumn;
 import com.bingbing.op.contact.common.db.ContactsProvider;
-import com.bingbing.op.contact.common.fragment.BaseFragment;
 
-public class FragmentContactList extends BaseFragment
+public class FragmentContactList extends BaseFragmentContact
 {
     private ContactListAdapter mAdapter;
     private List<ContactItem> mItems;
     private ListView mListView;
-    private static FragmentContactList mInstance;
 
-    public static FragmentContactList getInstance()
+    public static FragmentContactList newInstance()
     {
-        if (mInstance == null)
-        {
-            mInstance = new FragmentContactList();
-        }
+        FragmentContactList mInstance = new FragmentContactList();
         return mInstance;
     }
 

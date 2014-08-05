@@ -69,7 +69,6 @@ public class ContactsProvider extends ContentProvider
         return count;
     }
 
-    // URI����ת��
     public String getType(Uri uri)
     {
         switch (uriMatcher.match(uri))
