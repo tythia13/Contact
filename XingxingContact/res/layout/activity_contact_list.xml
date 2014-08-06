@@ -5,7 +5,7 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <com.bingbing.op.contact.app.phone.TabView
+    <com.bingbing.op.contact.app.phone.view.TabView
         android:id="@+id/activity_contact_list_tabview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

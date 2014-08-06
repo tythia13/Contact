@@ -1,4 +1,4 @@
-package com.bingbing.op.contact.app.phone;
+package com.bingbing.op.contact.app.phone.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
