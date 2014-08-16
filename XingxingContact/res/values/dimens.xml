@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <dimen name="DEMIN_LAYOUT_HALF">0.5dp</dimen>
+    <dimen name="DEMIN_LAYOUT_HEAD_HEIGH">40dp</dimen>
+
+</resources>

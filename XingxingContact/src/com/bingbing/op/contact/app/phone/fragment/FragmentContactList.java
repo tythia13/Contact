@@ -37,22 +37,26 @@ public class FragmentContactList extends BaseFragmentContact
         mItems = new ArrayList<ContactItem>();
         Cursor cursor = mActivity.managedQuery(ContactsProvider.CONTENT_URI, ContactColumn.PROJECTION, null, null, null);
 
-        if (cursor != null && cursor.moveToFirst())
+        if (cursor != null)
         {
-            ContactItem item;
-            while (cursor.moveToNext())
+            if (cursor.moveToFirst())
             {
-                item = new ContactItem();
-                int index = cursor.getColumnIndex(ContactColumn._ID);
-                if (index != -1) item.setId(cursor.getInt(index));
-                index = cursor.getColumnIndex(ContactColumn.NAME);
-                if (index != -1) item.setName(cursor.getString(index));
-                index = cursor.getColumnIndex(ContactColumn.MOBILENUM);
-                if (index != -1) item.setPhoneNumber(cursor.getString(index));
-                mItems.add(item);
+                ContactItem item;
+                while (cursor.moveToNext())
+                {
+                    item = new ContactItem();
+                    int index = cursor.getColumnIndex(ContactColumn._ID);
+                    if (index != -1) item.setId(cursor.getInt(index));
+                    index = cursor.getColumnIndex(ContactColumn.NAME);
+                    if (index != -1) item.setName(cursor.getString(index));
+                    index = cursor.getColumnIndex(ContactColumn.MOBILENUM);
+                    if (index != -1) item.setPhoneNumber(cursor.getString(index));
+                    mItems.add(item);
+                }
+
             }
+            //TODO cursor.close();
         }
-        cursor.close();
         mAdapter = new ContactListAdapter(mActivity, mItems);
         mListView.setAdapter(mAdapter);
         return v;

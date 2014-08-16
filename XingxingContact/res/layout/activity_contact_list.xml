@@ -5,21 +5,55 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <com.bingbing.op.contact.app.phone.TabView
-        android:id="@+id/activity_contact_list_tabview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/activity_contact_list_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </android.support.v4.view.ViewPager>
+        <com.bingbing.op.contact.app.phone.view.TabView
+            android:id="@+id/activity_contact_list_tabview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/activity_contact_list_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/activity_contact_list_linearlayout_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DEMIN_LAYOUT_HEAD_HEIGH"
+            android:background="@drawable/bg_tabview_common_head"
+            android:gravity="center_vertical"
+            android:visibility="invisible" >
+
+            <EditText
+                android:id="@+id/activity_contact_list_edittext_numbers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:id="@+id/activity_contact_list_imageview_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@android:drawable/ic_menu_delete" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -30,14 +64,17 @@
             <ListView
                 android:id="@+id/activity_contact_list_listview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
 
             <LinearLayout
+                android:id="@+id/activity_contact_list_linearlayout_keyboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,6 +83,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -56,6 +94,7 @@
                         android:text="1" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -66,6 +105,7 @@
                         android:text="2" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -83,6 +123,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -93,6 +134,7 @@
                         android:text="4" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -103,6 +145,7 @@
                         android:text="5" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -120,6 +163,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -130,6 +174,7 @@
                         android:text="7" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -140,6 +185,7 @@
                         android:text="8" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -157,6 +203,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_xing"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -167,6 +214,7 @@
                         android:text="*" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -177,6 +225,7 @@
                         android:text="0" />
 
                     <TextView
+                        android:id="@+id/activity_contact_list_textview_jing"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -191,10 +240,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="@dimen/DEMIN_LAYOUT_HALF"
             android:background="#666666" />
 
         <LinearLayout
+            android:id="@+id/activity_contact_list_linearlayout_bottom_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -202,6 +252,7 @@
             android:paddingTop="5dp" >
 
             <TextView
+                android:id="@+id/activity_contact_list_textview_showkeyboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
@@ -209,6 +260,38 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="拨号" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_contact_list_linearlayout_bottom_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/activity_contact_list_imageview_hidekeyboard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/add" />
+
+            <ImageView
+                android:id="@+id/activity_contact_list_imageview_dial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/add" />
+
+            <ImageView
+                android:id="@+id/activity_contact_list_imageview_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/add" />
         </LinearLayout>
     </LinearLayout>
 

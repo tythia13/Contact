@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/DEMIN_LAYOUT_HEAD_HEIGH"
     android:orientation="horizontal" >
 
     <LinearLayout
         android:id="@+id/layout_tabview_common_head_linearlayout_dial"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:background="@drawable/bg_tabview_common_head"
         android:clickable="true"
@@ -28,7 +28,7 @@
     <LinearLayout
         android:id="@+id/layout_tabview_common_head_linearlayout_contact"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/bg_tabview_common_head"
         android:clickable="true"
@@ -49,7 +49,7 @@
     <LinearLayout
         android:id="@+id/layout_tabview_common_head_linearlayout_group"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/bg_tabview_common_head"
         android:clickable="true"
