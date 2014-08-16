@@ -23,8 +23,6 @@ public class ContactsProvider extends ContentProvider
     public static final String CONTACTS_TABLE = "contacts";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + CONTACTS_TABLE);
 
-    /* ===================================================== */
-    // �������Զ��������
     public static final int CONTACTS = 1;
     public static final int CONTACT_ID = 2;
     private static final UriMatcher uriMatcher;
@@ -32,22 +30,17 @@ public class ContactsProvider extends ContentProvider
     {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, "contacts", CONTACTS);
-        // ������
         uriMatcher.addURI(AUTHORITY, "contacts/#", CONTACT_ID);
     }
-
-    /* ===================================================== */
 
     @Override
     public boolean onCreate()
     {
         dbHelper = new DBHelper(getContext());
-        // ִ�д�����ݿ�
         contactsDB = dbHelper.getWritableDatabase();
         return (contactsDB == null) ? false : true;
     }
 
-    // ɾ��ָ�������
     @Override
     public int delete(Uri uri, String where, String[] selectionArgs)
     {
@@ -59,6 +52,7 @@ public class ContactsProvider extends ContentProvider
                 break;
             case CONTACT_ID:
                 String contactID = uri.getPathSegments().get(1);
+                long id =  ContentUris.parseId(uri);
                 count = contactsDB.delete(CONTACTS_TABLE, ContactColumn._ID + "=" + contactID
                         + (!TextUtils.isEmpty(where) ? " AND (" + where + ")" : ""), selectionArgs);
                 break;

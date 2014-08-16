@@ -12,12 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bingbing.op.contact.R;
-import com.bingbing.op.contact.app.phone.TabView;
-import com.bingbing.op.contact.app.phone.TabView.onItemSelectedListener;
 import com.bingbing.op.contact.app.phone.adapter.FragmentAdapter;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactGroup;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactHistory;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactList;
+import com.bingbing.op.contact.app.phone.view.TabView;
+import com.bingbing.op.contact.app.phone.view.TabView.onItemSelectedListener;
 import com.bingbing.op.contact.common.activity.BaseActivity;
 import com.bingbing.op.contact.common.db.ContactsProvider;
 import com.bingbing.op.contact.common.fragment.BaseFragment;
