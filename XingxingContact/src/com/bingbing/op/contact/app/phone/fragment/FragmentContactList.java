@@ -3,11 +3,16 @@ package com.bingbing.op.contact.app.phone.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentUris;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.bingbing.op.contact.R;
@@ -35,30 +40,62 @@ public class FragmentContactList extends BaseFragmentContact
         View v = inflater.inflate(R.layout.fragment_contact_list, null, false);
         mListView = (ListView)v.findViewById(R.id.framgment_contact_list_listview);
         mItems = new ArrayList<ContactItem>();
-        Cursor cursor = mActivity.managedQuery(ContactsProvider.CONTENT_URI, ContactColumn.PROJECTION, null, null, null);
-
-        if (cursor != null)
+        mAdapter = new ContactListAdapter(mActivity, mItems);
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new OnItemClickListener()
         {
-            if (cursor.moveToFirst())
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3)
+            {
+                ContactItem item = mItems.get(position - mListView.getHeaderViewsCount());
+                Uri noteUri = ContentUris.withAppendedId(mActivity.getIntent().getData(), item.getId());
+                mActivity.startActivity(new Intent(Intent.ACTION_VIEW, noteUri));
+            }
+        });
+        return v;
+    }
+
+    private Cursor mCursor;
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mCursor = mActivity.managedQuery(ContactsProvider.CONTENT_URI, ContactColumn.PROJECTION, null, null, null);
+        if (mCursor != null)
+        {
+            List<ContactItem> list = new ArrayList<ContactItem>();
+            if (mCursor.moveToFirst())
             {
                 ContactItem item;
-                while (cursor.moveToNext())
+                while (mCursor.moveToNext())
                 {
                     item = new ContactItem();
-                    int index = cursor.getColumnIndex(ContactColumn._ID);
-                    if (index != -1) item.setId(cursor.getInt(index));
-                    index = cursor.getColumnIndex(ContactColumn.NAME);
-                    if (index != -1) item.setName(cursor.getString(index));
-                    index = cursor.getColumnIndex(ContactColumn.MOBILENUM);
-                    if (index != -1) item.setPhoneNumber(cursor.getString(index));
-                    mItems.add(item);
+                    int index = mCursor.getColumnIndex(ContactColumn._ID);
+                    if (index != -1) item.setId(mCursor.getInt(index));
+                    index = mCursor.getColumnIndex(ContactColumn.NAME);
+                    if (index != -1) item.setName(mCursor.getString(index));
+                    index = mCursor.getColumnIndex(ContactColumn.MOBILENUM);
+                    if (index != -1) item.setPhoneNumber(mCursor.getString(index));
+                    list.add(item);
                 }
 
             }
-            //TODO cursor.close();
+            // TODO cursor.close();
+            mItems.clear();
+            mItems.addAll(list);
+            mAdapter.updateList(mItems);
         }
-        mAdapter = new ContactListAdapter(mActivity, mItems);
-        mListView.setAdapter(mAdapter);
-        return v;
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        if (mCursor != null && !mCursor.isClosed())
+        {
+            //mCursor.close();
+        }
     }
 }

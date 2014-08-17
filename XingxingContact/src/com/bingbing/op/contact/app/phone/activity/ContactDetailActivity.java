@@ -1,12 +1,5 @@
 package com.bingbing.op.contact.app.phone.activity;
 
-import com.bingbing.op.contact.R;
-import com.bingbing.op.contact.R.drawable;
-import com.bingbing.op.contact.R.id;
-import com.bingbing.op.contact.R.layout;
-import com.bingbing.op.contact.R.string;
-import com.bingbing.op.contact.common.db.ContactColumn;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.bingbing.op.contact.R;
+import com.bingbing.op.contact.common.db.ContactColumn;
 
 public class ContactDetailActivity extends Activity
 {

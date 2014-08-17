@@ -3,5 +3,6 @@
 
     <dimen name="DEMIN_LAYOUT_HALF">0.5dp</dimen>
     <dimen name="DEMIN_LAYOUT_HEAD_HEIGH">40dp</dimen>
+    <dimen name="DEMIN_FONT_SIZE_10">10sp</dimen>
 
 </resources>

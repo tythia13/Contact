@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.bingbing.op.contact.common.fragment.BaseFragment;
+import com.bingbing.op.contact.app.phone.fragment.BaseFragmentContact;
 
 public class FragmentAdapter extends FragmentPagerAdapter
 {
-    private List<BaseFragment> mList;
+    private List<BaseFragmentContact> mList;
 
-    public FragmentAdapter(FragmentManager fm, List<BaseFragment> list)
+    public FragmentAdapter(FragmentManager fm, List<BaseFragmentContact> list)
     {
         super(fm);
         mList = list;

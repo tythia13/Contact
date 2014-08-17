@@ -35,7 +35,7 @@ public class FragmentContactHistory extends BaseFragmentContact
         View v = inflater.inflate(R.layout.fragment_contact_history, null, false);
         mListView = (ListView)v.findViewById(R.id.framgment_contact_history_listview);
         mItems = new ArrayList<ContactItem>();
-        Cursor cursor = null;//mActivity.managedQuery(ContactsProvider.CONTENT_URI, ContactColumn.PROJECTION, null, null, null);
+        Cursor cursor = mActivity.managedQuery(ContactsProvider.CONTENT_URI, ContactColumn.PROJECTION, null, null, null);
 
         if (cursor != null && cursor.moveToFirst())
         {
@@ -52,7 +52,7 @@ public class FragmentContactHistory extends BaseFragmentContact
                 mItems.add(item);
             }
         }
-        //cursor.close();
+        // cursor.close();
         mAdapter = new ContactListAdapter(mActivity, mItems);
         mListView.setAdapter(mAdapter);
         return v;

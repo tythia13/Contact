@@ -20,6 +20,10 @@
     <uses-permission android:name="android.permission.SEND_SMS" >
     </uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" >
+    </uses-permission>
 
     <application
         android:icon="@drawable/icon"
@@ -73,6 +77,13 @@
                 <data android:mimeType="vnd.android.cursor.dir/vnd.yarin.android.mycontacts" />
             </intent-filter>
         </activity>
+
+        <receiver android:name="com.bingbing.op.contact.app.phone.receiver.PhoneStateReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

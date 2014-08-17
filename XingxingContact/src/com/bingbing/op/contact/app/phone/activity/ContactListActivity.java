@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -21,12 +24,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bingbing.op.contact.R;
 import com.bingbing.op.contact.app.phone.adapter.ContactHistoryAdapter;
 import com.bingbing.op.contact.app.phone.adapter.FragmentAdapter;
+import com.bingbing.op.contact.app.phone.fragment.BaseFragmentContact;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactGroup;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactHistory;
 import com.bingbing.op.contact.app.phone.fragment.FragmentContactList;
@@ -35,7 +39,6 @@ import com.bingbing.op.contact.app.phone.view.TabView;
 import com.bingbing.op.contact.app.phone.view.TabView.onItemSelectedListener;
 import com.bingbing.op.contact.common.activity.BaseActivity;
 import com.bingbing.op.contact.common.db.ContactsProvider;
-import com.bingbing.op.contact.common.fragment.BaseFragment;
 import com.bingbing.op.contact.common.util.StrUtils;
 
 public class ContactListActivity extends BaseActivity implements OnClickListener
@@ -47,7 +50,7 @@ public class ContactListActivity extends BaseActivity implements OnClickListener
     private ImageView mImageViewClear, mImageViewHideKeyboard, mImageViewDial, mImageViewDelete;
     private LinearLayout mLinearLayoutTop, mLinearLayoutKeyboard, mLinearLayoutBottomOne, mLinearLayoutBottomTwo;
     private ListView mListView;
-    private List<BaseFragment> mFragmentList;
+    private List<BaseFragmentContact> mFragmentList;
     private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
     private TabView mTabView;
@@ -62,6 +65,13 @@ public class ContactListActivity extends BaseActivity implements OnClickListener
         setContentView(R.layout.activity_contact_list);
         initView();
         initData();
+        initPhone();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        // super.onSaveInstanceState(outState);
     }
 
     private void initView()
@@ -150,13 +160,13 @@ public class ContactListActivity extends BaseActivity implements OnClickListener
         }
         mViewPager = (ViewPager)findViewById(R.id.activity_contact_list_viewpager);
         mTabView = (TabView)findViewById(R.id.activity_contact_list_tabview);
-        mFragmentList = new ArrayList<BaseFragment>();
-        FragmentContactGroup f1 = new FragmentContactGroup();
-        FragmentContactHistory f2 = new FragmentContactHistory();
-        FragmentContactList f3 = new FragmentContactList();
+        mFragmentList = new ArrayList<BaseFragmentContact>();
+        FragmentContactHistory f1 = FragmentContactHistory.newInstance();
+        FragmentContactList f2 = FragmentContactList.newInstance();
+        FragmentContactGroup f3 = FragmentContactGroup.newInstance();
+        mFragmentList.add(f1);
         mFragmentList.add(f2);
         mFragmentList.add(f3);
-        mFragmentList.add(f1);
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setOnPageChangeListener(new OnPageChangeListener()
@@ -365,4 +375,38 @@ public class ContactListActivity extends BaseActivity implements OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
+    private void initPhone()
+    {
+
+        MyPhoneStateListener myPhoneStateListener = new MyPhoneStateListener();
+        // 取得TelephonyManager
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        // 將電話狀態的Listener加到取得TelephonyManager
+        telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+    }
+
+    public class MyPhoneStateListener extends PhoneStateListener
+    {
+        @Override
+        public void onCallStateChanged(int state, String phoneNumber)
+        {
+            switch (state)
+            {
+            // 電話狀態是閒置的
+                case TelephonyManager.CALL_STATE_IDLE:
+                    Toast.makeText(ContactListActivity.this, "闲置中…", Toast.LENGTH_LONG).show();
+                    break;
+                // 電話狀態是接起的
+                case TelephonyManager.CALL_STATE_OFFHOOK:
+                    Toast.makeText(ContactListActivity.this, "正接起電話…", Toast.LENGTH_LONG).show();
+                    break;
+                // 電話狀態是響起的
+                case TelephonyManager.CALL_STATE_RINGING:
+                    Toast.makeText(ContactListActivity.this, phoneNumber + "正打電話來…", Toast.LENGTH_LONG).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
